@@ -1,0 +1,17 @@
+[package]
+edition = "2021"
+name = "monomo_macros"
+version = "0.1.0"
+authors = ["Arkadiusz Zylkowski <arkadiuszzylkowski@gmail.com>"]
+include = ["/Cargo.toml", "/LICENSE-MIT", "/srs/**"]
+description = "Macros for monomo crate"
+readme = "README.md"
+license = "MIT"
+repository = "https://github.com/zylkowski/monomo_macros"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+syn = {version = "1.0.86", features = ["derive", "full"]}
+quote = "1.0.15"
