@@ -1,7 +1,7 @@
 [package]
 edition = "2021"
 name = "monomo_macros"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Arkadiusz Zylkowski <arkadiuszzylkowski@gmail.com>"]
 include = ["/Cargo.toml", "/LICENSE-MIT", "/src/**"]
 description = "Macros for monomo crate"
