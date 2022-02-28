@@ -1,7 +1,7 @@
 use proc_macro::TokenStream;
 use quote::*;
 use syn::{
-    parse::Parse, parse_macro_input, Attribute, GenericArgument, Ident, ItemImpl, Path,
+    parse::Parse, parse_macro_input, Attribute, Binding, GenericArgument, Ident, ItemImpl, Path,
     PathArguments, Type, TypePath,
 };
 
@@ -83,6 +83,18 @@ fn flatten_type_path(path: &Path) -> Ident {
             GenericArgument::Type(Type::Path(t)) => {
                 flattened_ident =
                     format_ident!("{}_{}", flattened_ident, flatten_type_path(&t.path));
+            }
+            GenericArgument::Binding(Binding {
+                ident,
+                eq_token: _,
+                ty: Type::Path(t),
+            }) => {
+                flattened_ident = format_ident!(
+                    "{}_{}_{}",
+                    flattened_ident,
+                    ident,
+                    flatten_type_path(&t.path)
+                );
             }
             _ => panic!("Lifetimes cannot be monomorphized!"),
         })
